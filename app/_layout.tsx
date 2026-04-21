@@ -4,10 +4,10 @@ import "./globals.css";
 export default function RootLayout() {
   return (
     <Stack>
-      <Stack.screen
+      <Stack.Screen
         name="(tabs)"
         options={{
-          headerShown: false
+          headerShown: false,
         }}
       />
     </Stack>

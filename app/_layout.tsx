@@ -7,7 +7,7 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <Stack>
         <Stack.Screen name="(auth)" options={{ title: "Authentication" }} />
-        <Stack.Screen name="(app)" options={{}} />
+        <Stack.Screen name="(app)" options={{ headerShown: false }} />
       </Stack>
     </SafeAreaProvider>
   );

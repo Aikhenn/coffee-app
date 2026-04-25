@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import Button from "@/components/Button";
+import { router } from "expo-router";
+import { View } from "react-native";
 
 export default function profile() {
-  return (
-    <View>
-      <Text>profile</Text>
-    </View>
-  )
-}
+  const handleLogout = () => {
+    router.replace("/(auth)");
+  };
 
-const styles = StyleSheet.create({})
+  return (
+    <View className="flex flex-col h-full mt-4">
+      <Button title="Back to Auth Screen" onPress={handleLogout} />
+    </View>
+  );
+}

@@ -10,6 +10,11 @@ const _layout = () => {
         tabBarShowLabel: false,
         tabBarActiveTintColor: COLORS.primary,
         tabBarInactiveTintColor: COLORS.secondary,
+        headerShown: false,
+        tabBarStyle: {
+          paddingTop: 10,
+          marginTop: 0,
+        },
       }}
     >
       <Tabs.Screen

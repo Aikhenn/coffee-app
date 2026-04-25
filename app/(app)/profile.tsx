@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import { router } from "expo-router";
-import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function profile() {
   const handleLogout = () => {
@@ -8,8 +8,8 @@ export default function profile() {
   };
 
   return (
-    <View className="flex flex-col h-full mt-4">
+    <SafeAreaView className="flex flex-col h-full mt-4">
       <Button title="Back to Auth Screen" onPress={handleLogout} />
-    </View>
+    </SafeAreaView>
   );
 }

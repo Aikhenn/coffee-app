@@ -1,33 +1,60 @@
-import FeedCard from "@/components/FeedCard";
+import AnimationStackCard from "@/components/AnimationStackCard";
 import { COLORS } from "@/constants/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
-import { ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Dimensions, Text, View } from "react-native";
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
+
 export default function Index() {
+  const { height } = Dimensions.get("window");
+
+  const scrollY = useSharedValue(0);
+
+  const onScroll = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollY.value = event.contentOffset.y;
+    },
+  });
   return (
     <LinearGradient
       colors={["#FAD8B3", "#EFE9E2"]}
       locations={[0, 0.2]}
-      className="flex-1"
+      className="flex-1 "
     >
-      <SafeAreaView className="flex-1 mx-8 mt-6">
-        <View className="flex-row justify-between">
-          <Text className="mb-3 text-4xl font-bold text-secondary">
-            For You
-          </Text>
-          <Ionicons
-            name="notifications-circle-outline"
-            size={40}
-            color={COLORS.secondary}
-          />
+      <View className="top-20 left-10 right-10 absolute z-10 flex-row justify-between items-center">
+        <Text className="text-4xl font-bold text-secondary">For You</Text>
+
+        <Ionicons
+          name="notifications-circle-outline"
+          size={40}
+          color={COLORS.secondary}
+        />
+      </View>
+
+      <Animated.ScrollView
+        className="flex-1"
+        showsVerticalScrollIndicator={false}
+        snapToInterval={height}
+        decelerationRate={0.6}
+        snapToAlignment="center"
+        disableIntervalMomentum
+        onScroll={onScroll}
+        scrollEventThrottle={16}
+      >
+        <View style={{ height }}>
+          <AnimationStackCard />
+        </View>
+        <View style={{ height }}>
+          <AnimationStackCard />
         </View>
 
-        <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-          <FeedCard />
-          <FeedCard />
-        </ScrollView>
-      </SafeAreaView>
+        <View style={{ height }}>
+          <AnimationStackCard />
+        </View>
+      </Animated.ScrollView>
     </LinearGradient>
   );
 }
